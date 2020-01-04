@@ -63,9 +63,9 @@ function draw() {
         dy = -dy;
     }
 
-    if (rightPressed) {
+    if (rightPressed && paddleX + paddleWidth < canvas.width) {
         paddleX += paddleDx;
-    } else if (leftPressed) {
+    } else if (leftPressed && paddleX > 0) {
         paddleX -= paddleDx;
     }
 
