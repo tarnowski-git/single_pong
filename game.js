@@ -18,6 +18,15 @@ function drawBall() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clear all canvas size
     drawBall();
+    // the x-coordinate (left-right)
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    // the y-coordinate (up-down)
+    if (y + dy < ballRadius) {
+        dy = -dy;
+    }
+
     x += dx;
     y += dy;
     requestAnimationFrame(draw);
