@@ -70,7 +70,11 @@ function draw() {
             x + dx < paddleX + paddleWidth)
     ) {
         dy = -dy;
+    } else if (y + dy > canvas.height) {
+        // if game over, we start again
+        location.reload();
     }
+
     if (rightPressed && paddleX + paddleWidth < canvas.width) {
         paddleX += paddleDx;
     } else if (leftPressed && paddleX > 0) {
