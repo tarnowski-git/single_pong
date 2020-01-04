@@ -63,6 +63,14 @@ function draw() {
         dy = -dy;
     }
 
+    if (
+        y + dy < ballRadius ||
+        (y + dy > canvas.height - paddleHeight - ballRadius &&
+            x + dx > paddleX &&
+            x + dx < paddleX + paddleWidth)
+    ) {
+        dy = -dy;
+    }
     if (rightPressed && paddleX + paddleWidth < canvas.width) {
         paddleX += paddleDx;
     } else if (leftPressed && paddleX > 0) {
