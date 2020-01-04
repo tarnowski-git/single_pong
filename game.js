@@ -11,6 +11,29 @@ let paddleHeight = 10;
 let paddleWidth = 75;
 let paddleX = (canvas.width - paddleWidth) / 2;
 
+let paddleDx = 7;
+let rightPressed;
+let leftPressed;
+
+function keyDownHandler(event) {
+    if (event.keyCode == 39) {
+        rightPressed = true;
+    } else if (event.keyCode == 37) {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(event) {
+    if (event.keyCode == 39) {
+        rightPressed = false;
+    } else if (event.keyCode == 37) {
+        leftPressed = false;
+    }
+}
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -38,6 +61,12 @@ function draw() {
     // the y-coordinate (up-down)
     if (y + dy < ballRadius) {
         dy = -dy;
+    }
+
+    if (rightPressed) {
+        paddleX += paddleDx;
+    } else if (leftPressed) {
+        paddleX -= paddleDx;
     }
 
     x += dx;
